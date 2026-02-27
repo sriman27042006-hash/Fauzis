@@ -1,0 +1,342 @@
+/* --- Global & Layout --- */
+:root {
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --bg-light: #f8fafc;
+  --bg-dark: #0f172a;
+  --pane-light: #ffffff;
+  --pane-dark: #1e1e2e;
+  --border-light: #e2e8f0;
+  --border-dark: #334155;
+  --text-light: #1e293b;
+  --text-dark: #cbd5e1;
+}
+
+.editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-light);
+  color: var(--text-light);
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+.editor-wrapper.theme-dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+/* --- Header --- */
+.editor-header {
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  background: var(--pane-light);
+  border-bottom: 1px solid var(--border-light);
+  z-index: 10;
+}
+
+.theme-dark .editor-header {
+  background: var(--pane-dark);
+  border-bottom-color: var(--border-dark);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-left h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.accent { color: var(--primary); }
+
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* --- Buttons --- */
+button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) { background: var(--primary-hover); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--border-light);
+  color: var(--text-light);
+}
+
+.theme-dark .btn-secondary {
+  border-color: var(--border-dark);
+  color: var(--text-dark);
+}
+
+/* --- Editor Grid --- */
+.editor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  flex: 1;
+  overflow: hidden;
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  background: var(--pane-light);
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+}
+
+.theme-dark .pane {
+  background: var(--pane-dark);
+  border-color: var(--border-dark);
+}
+
+.pane-header {
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border-light);
+  color: #64748b;
+}
+
+.theme-dark .pane-header {
+  border-bottom-color: var(--border-dark);
+  color: #94a3b8;
+}
+
+/* --- Monaco Container --- */
+.monaco-container {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Results Area --- */
+.output-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* --- Score Cards (New) --- */
+.score-section {
+  display: flex;
+  gap: 1rem;
+}
+
+.score-card {
+  flex: 1;
+  padding: 1.25rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-score {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.ai-score {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.score-card .label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.score-val {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.score-val span {
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+/* --- Complexity Row (New) --- */
+.complexity-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.comp-box {
+  flex: 1;
+  background: #f1f5f9;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary);
+}
+
+.theme-dark .comp-box { background: #0f172a; }
+
+.comp-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.comp-value {
+  font-family: 'Fira Code', monospace;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* --- Bugs & Performance --- */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.metric-card {
+  padding: 1rem;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+}
+
+.theme-dark .metric-card {
+  background: #11111b;
+  border-color: var(--border-dark);
+}
+
+.bug-card { border-top: 3px solid #ef4444; }
+.perf-card { border-top: 3px solid #10b981; }
+
+/* --- Result Sections --- */
+.result-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  margin: 0 0 0.75rem 0;
+  color: var(--primary);
+}
+
+.explanation-text {
+  line-height: 1.6;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.improvement-list {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.improvement-list li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* --- Empty States --- */
+.empty-placeholder {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.theme-dark .icon-circle { background: #0f172a; }
+
+/* --- Scrollbar Styling --- */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+.theme-dark ::-webkit-scrollbar-thumb { background: #334155; }
+
+/* --- Mobile Responsive --- */
+@media (max-width: 900px) {
+  .editor-grid {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+  .pane { height: 500px; }
+  .editor-wrapper { height: auto; overflow: visible; }
+}
+
+.explanation-box {
+  background: rgba(99, 102, 241, 0.05); /* Very light primary tint */
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary);
+  margin-top: 10px;
+}
+
+.explanation-text {
+  line-height: 1.7;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin: 0;
+  white-space: pre-line; /* Keeps line breaks from AI response */
+}
+
+.theme-dark .explanation-text {
+  color: var(--text-dark);
+}
+
+.theme-dark .explanation-box {
+  background: rgba(255, 255, 255, 0.03);
+}
